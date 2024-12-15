@@ -7,7 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors(
   {
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    credentials: true,
   }
 ));
 
@@ -36,13 +37,14 @@ app.post("/posts/:id/comment", (req, res) => {
   const id = randomBytes(4).toString("hex");
   const postId = req.params.id;
   const { comment } = req.body;
-  const newComment = commentByPostId.find(
+  let newComment = commentByPostId.find(
     (content) => content.postId === postId
   );
   if (newComment) {
     newComment.data.push({ id, comment });
   } else {
-    commentByPostId.push({ postId, data: [{ id, comment }] });
+    newComment = { postId, data: [{ id, comment }] }
+    commentByPostId.push(newComment);
   }
 
   res.status(201).send(newComment);
