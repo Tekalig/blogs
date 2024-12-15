@@ -12,7 +12,7 @@ export default function NewComment(NewCommentProps: NewCommentProps) {
     const handleCreateComment = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axiosComment.post(`/posts/${NewCommentProps.postId}/comments`, {
+            const response = await axiosComment.post(`/posts/${NewCommentProps.postId}/comment`, {
                 comment,
             });
             console.log(response.data);

@@ -1,6 +1,7 @@
 import  { useState, useEffect } from "react";
 import {  axiosPost } from "../api/api";
 import NewComment from "./NewComment";
+import CommentList from "./CommentList";
 
 interface Post {
     id: string;
@@ -34,6 +35,8 @@ export default function PostList() {
             <div key={post.id} className="border p-4 my-2">
                 <h2 className="text-xl font-bold">{post?.data.title}</h2>
                 <p>{post?.data.content}</p>
+                <hr className="my-4" />
+                <CommentList postId={post.id}/>
                 <hr className="my-4" />
                 <NewComment postId={post.id} />
             </div>
