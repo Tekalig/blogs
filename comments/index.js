@@ -33,7 +33,7 @@ app.get("/posts/:id/comments", (req, res) => {
   res.status(200).send(filterdComment);
 });
 
-app.post("/posts/:id/comment", (req, res) => {
+app.post("/posts/:id/comment", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const postId = req.params.id;
   const { comment } = req.body;
@@ -47,8 +47,22 @@ app.post("/posts/:id/comment", (req, res) => {
     commentByPostId.push(newComment);
   }
 
+  await axios.post("http://localhost:3005/events", {
+    type: "CommentCreated",
+    data: {
+      id,
+      comment,
+      postId,
+    },
+  });
+
   res.status(201).send(newComment);
 });
+
+// create events end point
+app.post('events', (req, res)=>{
+  console.log(req.body.type);
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
