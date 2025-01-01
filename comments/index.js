@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
+const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
@@ -33,10 +34,9 @@ app.get("/posts/:id/comments", (req, res) => {
   res.status(200).send(filterdComment);
 });
 
-app.post("/posts/:id/comment", async (req, res) => {
+app.post("/posts/comment", async (req, res) => {
   const id = randomBytes(4).toString("hex");
-  const postId = req.params.id;
-  const { comment } = req.body;
+  const { postId, comment } = req.body;
   let newComment = commentByPostId.find(
     (content) => content.postId === postId
   );
@@ -60,8 +60,9 @@ app.post("/posts/:id/comment", async (req, res) => {
 });
 
 // create events end point
-app.post('events', (req, res)=>{
+app.post('/events', (req, res)=>{
   console.log(req.body.type);
+  res.send({status: 'OK'})
 })
 
 app.listen(PORT, () => {
