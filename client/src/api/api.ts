@@ -15,3 +15,11 @@ export const axiosPost = axios.create({
     },
     withCredentials: true,
     });
+
+export const axiosQuery = axios.create({
+    baseURL: 'http://localhost:3002/',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    withCredentials: true,
+    });

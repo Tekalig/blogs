@@ -1,5 +1,5 @@
 import  { useState, useEffect } from "react";
-import {  axiosPost } from "../api/api";
+import { axiosQuery } from "../api/api";
 import NewComment from "./NewComment";
 import CommentList from "./CommentList";
 
@@ -10,6 +10,7 @@ interface Post {
         content: string;
 
     };
+    comments: [];
 }
 
 export default function PostList() {
@@ -17,7 +18,7 @@ export default function PostList() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axiosPost.get("/posts");
+                const response = await axiosQuery.get("/posts");
                 setPosts(response.data);
             } catch (error) {
                 console.error(error);
@@ -31,12 +32,12 @@ export default function PostList() {
     <>
     <div>Posts</div>
     <div className="grid grid-cols-2 gap-4">
-        {posts.map((post:Post ) => (
+        {posts?.map((post:Post ) => (
             <div key={post.id} className="border p-4 my-2">
                 <h2 className="text-xl font-bold">{post?.data.title}</h2>
                 <p>{post?.data.content}</p>
                 <hr className="my-4" />
-                <CommentList postId={post.id}/>
+                <CommentList comments={post.comments}/>
                 <hr className="my-4" />
                 <NewComment postId={post.id} />
             </div>

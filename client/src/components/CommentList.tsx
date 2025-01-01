@@ -1,28 +1,14 @@
-import { useEffect, useState } from "react"
-import { axiosComment } from "../api/api";
+// Date: 03/20/2021
 
 interface CommentListProps {
-    postId:string
+    comments: Comment[],
 }
 
 interface Comment {
     id:string,
     comment:string
 }
-export default function CommentList(CommentListProps:CommentListProps) {
-    const [comments, setComments] = useState([]);
-
-    useEffect(()=>{
-        const fetchComment = async () => {
-        try {
-            const response = await axiosComment.get(`posts/${CommentListProps.postId}/comments`);
-            setComments(response.data[0].data)
-        }catch (error) {
-            console.log(error)
-        }
-    }
-        fetchComment();
-    }, [])
+export default function CommentList({comments}:CommentListProps) {
 
   return (
     <div className="px-2">
