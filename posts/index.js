@@ -15,19 +15,7 @@ app.use(cors(
 
 const PORT = 3000;
 
-const posts = [
-  {
-    id: "123",
-    data: {
-      title: "My first post",
-      content: "This is my first post",
-    },
-  },
-];
 
-app.get("/posts", (req, res) => {
-  res.status(200).send(posts);
-});
 
 app.post("/posts", async (req, res) => {
   const id = randomBytes(4).toString("hex");

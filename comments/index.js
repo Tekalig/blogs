@@ -15,25 +15,6 @@ app.use(cors(
 
 const PORT = 3001;
 
-const commentByPostId = [
-  {
-    postId: "123",
-    data: [
-      {
-        id: "12333",
-        comment: "This is my first post",
-      },
-    ],
-  },
-];
-
-app.get("/posts/:id/comments", (req, res) => {
-  const filterdComment = commentByPostId.filter(
-    (comment) => comment.postId === req.params.id
-  );
-  res.status(200).send(filterdComment);
-});
-
 app.post("/posts/comment", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { postId, comment } = req.body;
