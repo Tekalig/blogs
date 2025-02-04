@@ -15,3 +15,4 @@ spec:
       containers:
         - name: posts
           image: besu21/posts:latest
+          imagePullPolicy: Always
