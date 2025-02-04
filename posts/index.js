@@ -40,6 +40,5 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("how deployment updates work");
   console.log(`Server is running on port ${PORT}`);
 });
