@@ -15,9 +15,9 @@ app.use(cors())
 app.post('/events', async (req, res)=>{
     const event = req.body;
 
-    await axios.post('http://localhost:3000/events', event)
-    await axios.post('http://localhost:3001/events', event)
-    await axios.post('http://localhost:3002/events', event)
+    await axios.post('http://posts-clusterip-srv:3000/events', event)
+    // await axios.post('http://localhost:3001/events', event)
+    // await axios.post('http://localhost:3002/events', event)
 
     res.send({status: 'OK'})
 })
