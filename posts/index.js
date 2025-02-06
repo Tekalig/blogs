@@ -15,7 +15,7 @@ app.use(cors(
 
 const PORT = 3000;
 
-
+const posts = [];
 
 app.post("/posts", async (req, res) => {
   const id = randomBytes(4).toString("hex");
