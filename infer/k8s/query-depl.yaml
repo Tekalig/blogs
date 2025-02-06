@@ -28,5 +28,5 @@ spec:
   ports:
     - name: query
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 3002
+      targetPort: 3002
