@@ -16,3 +16,17 @@ spec:
         - name: posts
           image: besu21/posts:latest
           imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
