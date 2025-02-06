@@ -15,6 +15,8 @@ app.use(cors(
 
 const PORT = 3001;
 
+const comments = [];
+
 app.post("/posts/comment", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { postId, comment } = req.body;
@@ -28,7 +30,7 @@ app.post("/posts/comment", async (req, res) => {
     commentByPostId.push(newComment);
   }
 
-  await axios.post("http://localhost:3005/events", {
+  await axios.post("http://event-bus-srv:3005/events", {
     type: "CommentCreated",
     data: {
       id,
