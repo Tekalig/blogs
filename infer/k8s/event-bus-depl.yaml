@@ -16,3 +16,17 @@ spec:
         - name: event-bus
           image: besu21/event-bus:latest
           imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: event-bus
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 3005
+      targetPort: 3005
