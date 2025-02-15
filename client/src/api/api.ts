@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosComment = axios.create({
-    baseURL: 'http://localhost:3001/',
+    baseURL: 'http://posts.com/',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -9,7 +9,7 @@ export const axiosComment = axios.create({
     });
 
 export const axiosPost = axios.create({
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://posts.com/',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -17,7 +17,7 @@ export const axiosPost = axios.create({
     });
 
 export const axiosQuery = axios.create({
-    baseURL: 'http://localhost:3002/',
+    baseURL: 'http://posts.com/',
     headers: {
         'Content-Type': 'application/json',
     },
