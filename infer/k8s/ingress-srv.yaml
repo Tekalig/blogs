@@ -4,12 +4,25 @@ metadata:
   name: ingress-srv
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
     - host: posts.com
       http:
         paths:
-          - path: /posts
+          - path: /posts/create
             backend:
               serviceName: posts-clusterip-srv
               servicePort: 3000
+          - path: /posts
+            backend:
+              serviceName: query-srv
+              servicePort: 3002
+          - path: /posts/comment
+            backend:
+              serviceName: commets-srv
+              servicePort: 3001
+          - path: /?(.*)
+            backend:
+              serviceName: client-srv
+              servicePort: 5173
